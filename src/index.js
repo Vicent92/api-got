@@ -1,5 +1,6 @@
 const express = require('express')
 const housesRouterApi = require('./houses/index')
+const personajesRouterApi = require('./personajes/index')
 const { logError, handleError, boomError } = require('./middleware/handleError')
 
 const app = express()
@@ -12,6 +13,7 @@ app.get('/', (req, res) => {
 })
 
 housesRouterApi(app)
+personajesRouterApi(app)
 
 app.use(logError)
 app.use(boomError)

@@ -1,12 +1,17 @@
 const boom = require('@hapi/boom');
+const pool = require('../../libs/postgres')
 
 class House {
   constructor() {
     this.houses = []
+    this.pool = pool
+    this.pool.on('error', (err) => console.log(err))
   }
 
   async find() {
-    return this.houses
+    const query = 'SELECT * FROM houses'
+    const rta = await this.pool.query(query)
+    return rta.rows
   }
 
   async findOne(id) {
